@@ -113,20 +113,20 @@ dependencies {
 
     // Tests
     /// JUnit
-    testImplementation "org.junit.jupiter:junit-jupiter-api"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
-    testImplementation "org.junit.jupiter:junit-jupiter-params"
-    testImplementation "io.micronaut.test:micronaut-test-junit5"
+    // testImplementation "org.junit.jupiter:junit-jupiter-api"
+    // testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+    // testImplementation "org.junit.jupiter:junit-jupiter-params"
+    // testImplementation "io.micronaut.test:micronaut-test-junit5"
     /// Mockito
     //testImplementation "org.mockito:mockito-junit-jupiter:$mockitoJunitJupiterVersion"
     /// Assertions
-    testImplementation "org.assertj:assertj-core:$assertjVersion"
+    // testImplementation "org.assertj:assertj-core:$assertjVersion"
 
     // Logging
     // See http://saltnlight5.blogspot.com/2013/08/how-to-configure-slf4j-with-different.html for a quick introduction to slf4j
-    implementation "io.github.microutils:kotlin-logging-jvm:$kotlinLoggingVersion"
+    // implementation "io.github.microutils:kotlin-logging-jvm:$kotlinLoggingVersion"
     runtimeOnly "ch.qos.logback:logback-classic:$logbackVersion"
-    runtimeOnly "net.logstash.logback:logstash-logback-encoder:$logstashLogbackVersion"
+    // runtimeOnly "net.logstash.logback:logstash-logback-encoder:$logstashLogbackVersion"
 
     // GraalVM
     annotationProcessor "io.micronaut:micronaut-graal"
@@ -150,43 +150,43 @@ dependencies {
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
 
     // Micronaut Validation
-    kapt "io.micronaut:micronaut-validation"
+    // kapt "io.micronaut:micronaut-validation"
     //implementation 'io.micronaut.configuration:micronaut-hibernate-validator' // if full Bean Validator 2.0 compliance is needed
 
     // Micronaut HTTP Server
     implementation "io.micronaut:micronaut-http-server-netty"
 
     // Micronaut HTTP Client
-    implementation "io.micronaut:micronaut-http-client"
+    // implementation "io.micronaut:micronaut-http-client"
 
     // Micronaut Management & Monitoring
     /// automatically provides the /health endpoint publicly, and some other with authentication
-    implementation 'io.micronaut:micronaut-management'
+    // implementation 'io.micronaut:micronaut-management'
     //implementation 'io.micronaut.configuration:micronaut-jmx' // activate JMX for the endpoints
 
     // Micronaut Persistence
-    kapt "io.micronaut.data:micronaut-data-processor"
-    implementation "io.micronaut.data:micronaut-data-hibernate-jpa"
-    /// JDBC Connection Pooling
-    runtimeOnly "io.micronaut.sql:micronaut-jdbc-hikari"
+    // kapt "io.micronaut.data:micronaut-data-processor"
+    // implementation "io.micronaut.data:micronaut-data-hibernate-jpa"
+    // /// JDBC Connection Pooling
+    // runtimeOnly "io.micronaut.sql:micronaut-jdbc-hikari"
     //runtimeOnly "io.micronaut.sql:micronaut-jdbc-tomcat"
     //runtimeOnly "io.micronaut.sql:micronaut-jdbc-dbcp"
     /// Database drivers
-    runtimeOnly "com.h2database:h2"
-    runtimeOnly "org.mariadb.jdbc:mariadb-java-client:$mariadbVersion"
+    // runtimeOnly "com.h2database:h2"
+    // runtimeOnly "org.mariadb.jdbc:mariadb-java-client:$mariadbVersion"
     //runtimeOnly "org.hsqldb:hsqldb:$hsqldbVersion"
     //runtimeOnly "org.apache.derby:derby:$derbyVersion"
 
     // Micronaut Security
-    kapt "io.micronaut.security:micronaut-security-annotations"
-    implementation "io.micronaut.security:micronaut-security"
+    // kapt "io.micronaut.security:micronaut-security-annotations"
+    // implementation "io.micronaut.security:micronaut-security"
 
     // Micronaut Service registration and discovery
-    implementation "io.micronaut:micronaut-discovery-client"
+    // implementation "io.micronaut:micronaut-discovery-client"
 
     // Micronaut OpenAPI integration
-    kapt "io.micronaut.configuration:micronaut-openapi"
-    implementation "io.swagger.core.v3:swagger-annotations"
+    // kapt "io.micronaut.configuration:micronaut-openapi"
+    // implementation "io.swagger.core.v3:swagger-annotations"
 
     // Micronaut Views
     //implementation "io.micronaut.views:micronaut-views-thymeleaf"
@@ -205,16 +205,16 @@ dependencies {
 
 
 
-ext {
-    _group = applicationGroup
-    _module = applicationModule
-    _mainClass = _group + "." + _module + ".Application"
-    _title = applicationTitle
-}
+// ext {
+//     _group = applicationGroup
+//     _module = applicationModule
+//     _mainClass = _group + "." + _module + ".Application"
+//     _title = applicationTitle
+// }
 
 // application plugin configuration
 //applicationName = _title
-//mainClassName = _mainClass
+mainClassName = "com.example.ApplicationKt"
 
 // Java configuration
 java {
@@ -231,33 +231,36 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
     }
 }
 
-// enable gradle incremental annotation processing for Java
-tasks.withType(JavaCompile) {
-    options.compilerArgs = [
-            "-Amicronaut.processing.incremental=true",
-            "-Amicronaut.processing.annotations=${_group}.*",
-            "-Amicronaut.processing.group=${_group}",
-            "-Amicronaut.processing.module=${_module}",
-    ]
-}
+// // enable gradle incremental annotation processing for Java
+// tasks.withType(JavaCompile) {
+//     options.compilerArgs = [
+//             "-Amicronaut.processing.incremental=true",
+//             "-Amicronaut.processing.annotations=${_group}.*",
+//             "-Amicronaut.processing.group=${_group}",
+//             "-Amicronaut.processing.module=${_module}",
+//     ]
+// }
 
-// enable gradle incremental annotation processing for Kotlin
-kapt {
-    arguments {
-        arg("micronaut.processing.incremental", true)
-        arg("micronaut.processing.annotations", "${_group}.*")
-        arg("micronaut.processing.group", _group)
-        arg("micronaut.processing.module", _module)
-    }
-}
+// // enable gradle incremental annotation processing for Kotlin
+// kapt {
+//     arguments {
+//         arg("micronaut.processing.incremental", true)
+//         arg("micronaut.processing.annotations", "${_group}.*")
+//         arg("micronaut.processing.group", _group)
+//         arg("micronaut.processing.module", _module)
+//     }
+// }
 
 // jar configuration
 jar {
     // add Manifest to jar
+    // manifest {
+    //     attributes 'Implementation-Title': applicationTitle,
+    //             'Implementation-Version': version,
+    //             'Main-Class': _mainClass
+    // }
     manifest {
-        attributes 'Implementation-Title': applicationTitle,
-                'Implementation-Version': version,
-                'Main-Class': _mainClass
+        attributes 'Main-Class': "com.example.ApplicationKt"
     }
 }
 
